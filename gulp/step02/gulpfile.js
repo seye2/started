@@ -6,7 +6,11 @@ var sass = require('gulp-sass'); // scss --> css 변환
 var minifyCss = require('gulp-minify-css'); // css 압축
 var webserver = require('gulp-webserver'); // localhost 기본 8000으로 웹서버 생성
 var open = require('gulp-open'); // 이게 default 인가요...
+//https://www.npmjs.com/package/gulp-open
+//gulp-open을 이용하면 브라우져를 실행할 수 있음.
 var include = require("gulp-include"); // 모르겠다.
+//https://www.npmjs.com/package/gulp-include
+//gulp-include를 사용하면 include를 사용한 파일을 합쳐주는 역활을 함
 var compass = require('gulp-compass'); // compass 컴파일러
 var plumber = require('gulp-plumber'); // 에러 핸들링
 
@@ -51,6 +55,8 @@ gulp.task('compile-sass', function () {
             css: buildSrc+'/css',
             style:'compact'
         }))
+        //https://www.npmjs.com/package/gulp-compass
+        //compass를 이용하여 sass를 compile하고 compass를 사용할 수 있게 해줌
         .pipe(gulp.dest(buildSrc+'/css')); // 결과물 css 생성
 });
 
@@ -127,6 +133,8 @@ gulp.task('watch', function () {
 // 파일 제거
 gulp.task('clean', function () {
     return gulp.src(buildSrc, {read: false})// 결과물 폴더를 삭제 하는거 같은데 read: false 설명 필요
+    //read:true시 파일을 쓰는 기능을 할 수 없기 때문에 해당 폴더의 수정/삭제를 할 수 없음 그래서 false를 사용
+    //.src는 삭제 기능이 아닌 경로를 지정하는 역활임
         .pipe(plumber({ // 에러 체크
             errorHandler: function (error) {
                 console.log(error.message);
